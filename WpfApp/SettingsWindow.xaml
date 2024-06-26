@@ -1,0 +1,35 @@
+﻿<Window x:Class="WpfApp.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        xmlns:localization="clr-namespace:WpfApp.Localization"
+        mc:Ignorable="d"
+        Title="{x:Static localization:Strings.SettingsWindow}" Height="245" Width="300"
+        ResizeMode="NoResize" Closing="Window_Closing">
+    <Grid>
+        <StackPanel>
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Label}">
+                    <Setter Property="Margin" Value="10,0,0,0"/>
+                </Style>
+                <Style TargetType="{x:Type ComboBox}">
+                    <Setter Property="Margin" Value="15,0,15,5"/>
+                </Style>
+            </StackPanel.Resources>
+
+            <Label Content="{x:Static localization:Strings.Language}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <ComboBox Name="cbLanguage" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
+
+            <Label Content="{x:Static localization:Strings.Category}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <ComboBox Name="cbCategory" VerticalAlignment="Center"/>
+
+            <Label Content="{x:Static localization:Strings.Resolution}" VerticalAlignment="Center"/>
+            <ComboBox Name="cbResolution" VerticalAlignment="Center" />
+
+            <Button Name="btnSubmit" Content="{x:Static localization:Strings.Submit}" FontSize="20" HorizontalAlignment="Stretch" Margin="15 10 15 0" Click="btnSubmit_Click"/>
+        </StackPanel>
+        
+    </Grid>
+</Window>

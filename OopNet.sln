@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FormsApp", "FormsApp\FormsApp.csproj", "{F3E42D35-5570-4DE6-845F-C0AC9A96D4DE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "DataLayer\DataLayer.csproj", "{D7BB2A78-E1F1-42CD-B610-30706FA200CC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfApp", "WpfApp\WpfApp.csproj", "{0E09543C-2F31-4F54-8291-CF40A2C8BFD3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3E42D35-5570-4DE6-845F-C0AC9A96D4DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3E42D35-5570-4DE6-845F-C0AC9A96D4DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3E42D35-5570-4DE6-845F-C0AC9A96D4DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3E42D35-5570-4DE6-845F-C0AC9A96D4DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7BB2A78-E1F1-42CD-B610-30706FA200CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7BB2A78-E1F1-42CD-B610-30706FA200CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7BB2A78-E1F1-42CD-B610-30706FA200CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7BB2A78-E1F1-42CD-B610-30706FA200CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E09543C-2F31-4F54-8291-CF40A2C8BFD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E09543C-2F31-4F54-8291-CF40A2C8BFD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E09543C-2F31-4F54-8291-CF40A2C8BFD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E09543C-2F31-4F54-8291-CF40A2C8BFD3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ECA729D5-35A3-42A4-8955-219150FBC42E}
+	EndGlobalSection
+EndGlobal

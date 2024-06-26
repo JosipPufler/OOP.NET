@@ -1,0 +1,203 @@
+﻿<Window x:Class="WpfApp.MainWindow"
+        xmlns:controls="clr-namespace:WpfApp.controls"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        xmlns:local="clr-namespace:WpfApp"
+        xmlns:localization="clr-namespace:WpfApp.Localization"
+        mc:Ignorable="d"
+        Title="{x:Static localization:Strings.MainWindow}" Height="450" Width="800" Closing="Window_Closing" Closed="Window_Closed">
+    <Grid>
+        <Grid x:Name="loadingGrid" Visibility="Hidden">
+            <Image gif:ImageBehavior.AnimatedSource="/Images/loading-gif.gif"/>
+        </Grid>
+        <Grid Name="myGrid" Visibility="Visible">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="6*"/>
+            </Grid.RowDefinitions>
+
+            <ComboBox x:Name="cbFirst" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" Margin="55 0 0 0" VerticalAlignment="Bottom" SelectionChanged="cbFirst_SelectionChanged"/>
+            <ComboBox Name="cbSecond" Grid.Column="2" Grid.Row="0" IsEnabled="False" HorizontalAlignment="Stretch" Margin="0 0 55 0" VerticalAlignment="Bottom" SelectionChanged="cbSecond_SelectionChanged"/>
+
+            <Button Name="btnSettings" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="top" Margin="5 5 0 0" Click="btnSettings_click" Content="{x:Static localization:Strings.Settings}"/>
+            <Label Name="lblScore" Grid.Row="0" Grid.Column="1" Content="{x:Static localization:Strings.ChooseOpponent}" FontSize="30" FontWeight="DemiBold" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+
+            <Button Name="btnFirstDetails" Grid.Column="0" Grid.Row="0" MaxWidth="50" Margin="5 0 0 0" Content="{x:Static localization:Strings.Inspect}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="ShowTeamStats"/>
+            <Button Name="btnSecondDetails" Grid.Column="2" Grid.Row="0" MaxWidth="50" Margin="0 0 5 0" Content="{x:Static localization:Strings.Inspect}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="ShowTeamStats"/>
+
+            <!-- starting 11 for fav team -->
+            <Label Background="Gold" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Stretch" FlowDirection="RightToLeft" Content="{x:Static localization:Strings.Team1Starting}"/>
+            <ScrollViewer
+            Margin="0,25,0,0"
+            Grid.Row="1" Grid.Column="0"
+            VerticalScrollBarVisibility="Disabled"
+            HorizontalScrollBarVisibility="Auto"
+            FlowDirection="RightToLeft">
+
+                <ItemsControl Name="favTeam11">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <WrapPanel >
+                                <Label FontStyle="Italic" Content="{Binding ShirtNumber}"/>
+                                <Label Content="{Binding Name}" />
+                            </WrapPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Vertical"></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+
+            </ScrollViewer>
+
+            <!-- starting 11 for op team -->
+            <Label Grid.Row="1" Background="Gray" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Stretch" Content="{x:Static localization:Strings.Team2Starting}"/>
+            <ScrollViewer
+            Margin="0,25,0,0"
+            Grid.Row="1"
+            Grid.Column="2"
+            HorizontalScrollBarVisibility="Auto"
+            VerticalScrollBarVisibility="Disabled">
+                <ItemsControl Name="opTeam11" HorizontalAlignment="Left">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <WrapPanel HorizontalAlignment="Left">
+                                <Label FontStyle="Italic" Content="{Binding ShirtNumber}" />
+                                <Label Content="{Binding Name}" />
+                            </WrapPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Vertical"></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </ScrollViewer>
+
+            <!-- substitutions for fav team -->
+            <Label Grid.Row="2" Grid.Column="0" Background="Khaki" VerticalAlignment="Top" HorizontalAlignment="Stretch" FlowDirection="RightToLeft" Content="{x:Static localization:Strings.Team1Subs}"/>
+            <ScrollViewer
+            Margin="0,25,0,0"
+            Grid.Row="2" Grid.Column="0"
+            VerticalScrollBarVisibility="Disabled"
+            HorizontalScrollBarVisibility="Auto"
+            FlowDirection="RightToLeft">
+                <ItemsControl Name="favTeamSubs">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <WrapPanel >
+                                <Label Content="{Binding ShirtNumber}" />
+                                <Label Content="{Binding Name}" />
+                            </WrapPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Vertical"></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </ScrollViewer>
+
+            <!-- substitutions for op team -->
+            <!--<StackPanel Grid.Row="2" Grid.Column="2" Name="gOpSubstitutions" Orientation="Vertical">
+            -->
+            <Label Name="opSubsTitle" Background="Silver" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Stretch" Content="{x:Static localization:Strings.Team2Subs}"/>
+            <ScrollViewer
+            Margin="0,25,0,0"
+            Grid.Row="2" Grid.Column="2"
+                VerticalScrollBarVisibility="Disabled"
+                HorizontalScrollBarVisibility="Auto">
+                <ItemsControl Name="opTeamSubs" HorizontalAlignment="Left">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <WrapPanel HorizontalAlignment="Left">
+                                <Label Content="{Binding ShirtNumber}" />
+                                <Label Content="{Binding Name}" />
+                            </WrapPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Vertical"></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </ScrollViewer>
+
+            <!-- Middle graphic -->
+            <Image Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Stretch="Fill">
+                <Image.Source>
+                    <BitmapImage DecodePixelWidth="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}, Path=ColumnDefinitions[1].ActualWidth}" 
+                             DecodePixelHeight="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}, Path=RowDefinitions[1].ActualHeight}"
+                             UriSource="/images/boljiTeren.jpg"/>
+                </Image.Source>
+            </Image>
+            <Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Fav team -->
+                <controls:UCPlayerIcon x:Name="FavPlayer1" Grid.Column="2" Grid.Row="0"></controls:UCPlayerIcon>
+
+                <controls:UCPlayerIcon x:Name="FavPlayer2" Grid.Column="1" Grid.Row="1"></controls:UCPlayerIcon>
+                <controls:UCPlayerIcon x:Name="FavPlayer3" Grid.Column="3" Grid.Row="1"></controls:UCPlayerIcon>
+                <controls:UCPlayerIcon x:Name="FavPlayer4" Grid.Column="0" Grid.Row="1"></controls:UCPlayerIcon>
+                <controls:UCPlayerIcon x:Name="FavPlayer5" Grid.Column="4" Grid.Row="1"></controls:UCPlayerIcon>
+
+
+                <controls:UCPlayerIcon x:Name="FavPlayer6" Grid.Column="1" Grid.Row="2"></controls:UCPlayerIcon>
+                <controls:UCPlayerIcon x:Name="FavPlayer7" Grid.Column="3" Grid.Row="2"></controls:UCPlayerIcon>
+                <controls:UCPlayerIcon x:Name="FavPlayer8" Grid.Column="0" Grid.Row="2"></controls:UCPlayerIcon>
+                <controls:UCPlayerIcon x:Name="FavPlayer9" Grid.Column="2" Grid.Row="2"></controls:UCPlayerIcon>
+                <controls:UCPlayerIcon x:Name="FavPlayer10" Grid.Column="4" Grid.Row="2"></controls:UCPlayerIcon>
+
+                <controls:UCPlayerIcon x:Name="FavPlayer11" Grid.Column="2" Grid.Row="3"></controls:UCPlayerIcon>
+
+                <!-- OP team -->
+                <controls:UCPlayerIcon x:Name="OpPlayer1" Grid.Column="2" Grid.Row="7"></controls:UCPlayerIcon>
+
+                <controls:UCPlayerIcon x:Name="OpPlayer2" Grid.Column="0" Grid.Row="6"></controls:UCPlayerIcon>
+                <controls:UCPlayerIcon x:Name="OpPlayer3" Grid.Column="1" Grid.Row="6"></controls:UCPlayerIcon>
+                <controls:UCPlayerIcon x:Name="OpPlayer4" Grid.Column="3" Grid.Row="6"></controls:UCPlayerIcon>
+                <controls:UCPlayerIcon x:Name="OpPlayer5" Grid.Column="4" Grid.Row="6"></controls:UCPlayerIcon>
+
+                <controls:UCPlayerIcon x:Name="OpPlayer6" Grid.Column="1" Grid.Row="5"></controls:UCPlayerIcon>
+                <controls:UCPlayerIcon x:Name="OpPlayer7" Grid.Column="3" Grid.Row="5"></controls:UCPlayerIcon>
+                <controls:UCPlayerIcon x:Name="OpPlayer8" Grid.Column="0" Grid.Row="5"></controls:UCPlayerIcon>
+                <controls:UCPlayerIcon x:Name="OpPlayer9" Grid.Column="2" Grid.Row="5"></controls:UCPlayerIcon>
+                <controls:UCPlayerIcon x:Name="OpPlayer10" Grid.Column="4" Grid.Row="5"></controls:UCPlayerIcon>
+
+                <controls:UCPlayerIcon x:Name="OpPlayer11" Grid.Column="2" Grid.Row="4"></controls:UCPlayerIcon>
+
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

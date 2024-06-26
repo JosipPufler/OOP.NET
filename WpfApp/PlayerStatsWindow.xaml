@@ -1,0 +1,52 @@
+﻿<Window x:Class="WpfApp.PlayerStatsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        xmlns:localization="clr-namespace:WpfApp.Localization"
+        mc:Ignorable="d"
+        Title="{x:Static localization:Strings.PlayerStatsWindow}" Height="450" Width="450"
+        Name="PlayerStats">
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard BeginTime="0" Duration="0:0:0.3">
+                        <DoubleAnimation Storyboard.TargetName="PlayerStats" Storyboard.TargetProperty="(Window.Top)" From="-450" To="0" BeginTime="0:0:0" Duration="0:0:0.3"/>
+                        <DoubleAnimation Storyboard.TargetName="PlayerStats" Storyboard.TargetProperty="(Window.Left)" From="-450" To="25" BeginTime="0:0:0" Duration="0:0:0.3"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" FontSize="25" Name="lblShirtNumber" HorizontalAlignment="Center" VerticalAlignment="Bottom" Content="lblShirtNumber"></Label>
+        <Label Grid.Row="1" Grid.Column="0" FontSize="25" Name="lblPlayerName" HorizontalAlignment="Center" VerticalAlignment="top" Content="lblPlayerName"></Label>
+        <Ellipse Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" MinHeight="50" MinWidth="50">
+            <Ellipse.Fill>
+                <ImageBrush x:Name="playerPicture"/>
+            </Ellipse.Fill>
+        </Ellipse>
+
+        <Label Grid.Row="2" Grid.Column="0" FontSize="25" Content="{x:Static localization:Strings.Position}"></Label>
+        <Label Grid.Row="3" Grid.Column="0" FontSize="25" Content="{x:Static localization:Strings.GoalsGiven}"></Label>
+        <TextBlock Grid.Row="4" Grid.Column="0" FontSize="25" TextWrapping="Wrap" Text="{x:Static localization:Strings.YellowCards}"></TextBlock>
+
+        <Label Grid.Row="2" Grid.Column="1" FontSize="25" Name="lblPosition" Content="lblPosition"></Label>
+        <Label Grid.Row="3" Grid.Column="1" FontSize="25" Name="lblGoals" Content="lblGoals"></Label>
+        <Label Grid.Row="4" Grid.Column="1" FontSize="25" Name="lblYellow" Content="lblYellow"></Label>
+
+    </Grid>
+</Window>
